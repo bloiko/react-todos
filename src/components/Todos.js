@@ -17,20 +17,13 @@ const Todos = () => {
         {id: 0, title: 'Some', description: 'Some desc', date: dateFormat(new Date()), checked: false}
     ]);
 
-
-    const [uncheckedTodosCounter, setUncheckedTodosCounter] = useState(0)
-
-
-
-    const calculateUncheckedTodosAmount = () => {
-        let sum = 0;
-        for (let i = 0; i < todos.length; i++) {
-            if (!todos[i].checked) {
-                sum++
+    const checkedTodos= () => {
+        return todos.reduce((count, item) => {
+            if (item.checked) {
+                count++;
             }
-        }
-        setUncheckedTodosCounter(sum)
-        return <span> {uncheckedTodosCounter || 0}</span>;
+            return count;
+        }, 0)
     }
 
 
@@ -75,15 +68,11 @@ const Todos = () => {
         return <ul className="todo-list">{items}</ul>;
     }
 
-    useEffect(() => {
-        calculateUncheckedTodosAmount()
-    }, [todos]);
-
 
     return (
         <Card title="My Todos">
-            {`Amount of unchecked todos: ${uncheckedTodosCounter}`}
-            <TodoForm handleSubmit={handleSubmit} handleRemoveChecked={removeChecked}/>
+
+            <TodoForm handleSubmit={handleSubmit} handleRemoveChecked={removeChecked} checkedTodos={checkedTodos()}/>
             <Divider/>
             {renderTodoItems(todos)}
         </Card>

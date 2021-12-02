@@ -3,7 +3,7 @@ import {Button, Form, Input} from "antd";
 import RemoveButton from "./RemoveButton";
 
 
-const TodoForm = ({handleSubmit, handleRemoveChecked}) => {
+const TodoForm = ({handleSubmit, handleRemoveChecked, checkedTodos}) => {
 
     const [form] = Form.useForm();
 
@@ -29,7 +29,7 @@ const TodoForm = ({handleSubmit, handleRemoveChecked}) => {
                 <Button htmlType="submit" type="primary">Add</Button>
             </Form.Item>
             <Form.Item>
-                <RemoveButton handleRemoveChecked={handleRemoveChecked}/>
+                <RemoveButton handleRemoveChecked={handleRemoveChecked} checkedTodos={checkedTodos}/>
             </Form.Item>
         </Form>
     );

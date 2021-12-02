@@ -28,6 +28,7 @@ const TodoItem = ({item, handleCheck, handleRemove}) => {
             key={item.id}
             style={{
                 textDecoration: item.checked ? 'line-through' : 'none',
+                color: item.checked ? 'red' : 'black'
             }}>
             <Checkbox onClick={onChangeItem} checked={item.checked}>{item.title} </Checkbox>
             <span>{item.description}</span>
